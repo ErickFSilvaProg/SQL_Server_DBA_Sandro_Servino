@@ -1,0 +1,20 @@
+/*==================================================================================
+Curso: SQL SERVER 2019
+https://www.udemy.com/course/draft/3957796/?referralCode=FB10D369E786D9FE8A48
+
+Instrutor: Sandro Servino
+https://www.linkedin.com/in/sandroservino/?originalSubdomain=pt
+https://filiado.wixsite.com/sandroservino
+==================================================================================*/
+
+ATENÇAO> SE CRIAR O BANCO BANCOx OU QUALQUER OUTRO BANCO E RECEBER UM ERRO DO TIPO 
+CREATE FILE encoutered operating system error 5 (access is denied) while attempting
+to open or create the physical file p:\data\BANCOX.mdf
+
+VERIFIQUE NA PROPRIEDADE DA PASTA P:\DATA E NA PASTA ONDE VOCE VAI COLOCAR SEU ARQUIVO DE LOG *.ldf,
+NA ABA SEGURANCA ou SECURITY SE O USER DE SERVICO DO SQL SERVER COMPANYX\SSMS OU ALGUM OUTRO QUE VOCE TENHA
+CRIADO NO DOMINIO, ESTA LA E SE ESTA COM AS PERMISSOES DE CRIAR ARQUIVOS, LER, MODIFICAR E DELETAR.
+
+ESTA MENSAGEM DE ERRO INDICA QUE O O SERVICO DO SQL SERVER QUE RODA SOB UMA CONTA CRIADA, QUE PODE SER O PADRAO DO SQL SERVER 
+OU A QUE VOCE CRIOU NO DOMINIO COMO EXEMPLO COMPANYX\SSMS, NAO TEM PERMISSAO DO SISTEMA OPERACIONAL WINDOWS 
+PARA LER, CRIAR E ALTERAR ARQUIVOS NESTA PASTA.

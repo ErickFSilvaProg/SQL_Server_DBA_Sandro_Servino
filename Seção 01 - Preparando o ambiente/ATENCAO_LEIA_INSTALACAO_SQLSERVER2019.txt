@@ -1,0 +1,37 @@
+Ola Caro(a) Aluno(a),
+
+Se houver alguma dificuldade em achar alguma funcionalidade na instalacao do SQL SERVER 2019 Trial Dev, conforme demonstrado na aula frente a versão que baixou diretamente
+do site da Microsoft ou mesmo alguma dificuldade para baixar o instalador do SQL SERVER do site da MS, 
+disponibilizei o instalador do SQL SERVER como um recurso desta aula, por dois meios, que poderá escolher o que for mais simples:
+
+1 Baixar o instalador do SQL SERVER, do meu google drive, através deste link:
+
+https://drive.google.com/file/d/1y_OK5XGehPLKZozzuF2jNFk7cdBumDjb/view?usp=sharing
+
+Irá ser baixado um arquivo compactado chamado SQLServer2019-x64-ENU-Dev.iso, na sua área de download, do seu windows desktop.
+Se clicar duas vezes neste arquivo compactado, será aberta uma janela, clique então no botão Open, ou se clicar com botao direito do mouse sobre o arquivo compactado e selecionar 
+a opcao Mount (montar), veja que será aberto o arquivo compactado e aparecerá varios arquivos internos, inclusive um arquivo chamado SETUP. 
+***** NÃO FAÇA NADA POR ENQUANTO. Nós iremos instalar o SQL SERVER depois, dentro de uma VM (máquina virtual) que ainda iremos criar no Virtual Box.
+
+ A outra opção para baixar o instalador, que acho mais complexa é a seguinte.
+
+2. Baixar da própria aula, dois arquivos que estão compactados.
+
+Neste caso:
+
+- Basta clicar nos 2 arquivos disponibilizados na aula, que será feito os downloads dos arquivos do instalador para área de download do seu windows. 
+  SQLServer2019-x64-ENU-Dev.zip.001
+  SQLServer2019-x64-ENU-Dev.zip.002
+
+- Depois copie os 2 arquivos para um local onde irá realizar a instalação. 
+- Voce precisará juntar os 2 arquivos que foram compactados com o zip em apenas 1 arquivo. Para isto, marque os 2 arquivos, selecionando os 2 arquivos, clique com o botao direito do mouse 
+  sobre um dos arquivos selecionados e escolha a opcao 7-Zip, Extrair para aqui...
+- Será criado um arquivo unico, decompactado chamado SQLServer2019-x64-ENU-Dev.iso, com cerca de 1.4GB.
+
+
+Pronto, por enquanto, vamos apenas baixar o instalador do SQL SERVER. NAO INSTALE O SQL SERVER NO SEU DESKTOP. IREMOS INSTALAR DEPOIS DENTRO DE UM SERVIDOR VIRTUAL (VM) NO VIRTUAL BOX.
+
+-- -----------------------------------------------------------------------------------------------------------------------------------------------
+
+Atenciosamente
+Sandro Servino
