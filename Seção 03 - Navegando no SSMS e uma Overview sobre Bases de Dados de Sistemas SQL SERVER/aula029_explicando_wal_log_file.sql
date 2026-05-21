@@ -6,8 +6,7 @@
 	- Podemos criar mais de um 'file' para armazenar dados, podendo ficar em dois discos.
 	- Podemos até colocar uma tabela grande em um disco específico.
 	- Não seria uma boa prática criar mais de um 'file' do arquivo de 'log'.
-	- A cada 1 minuto o SQL SERVER ativa o robô 'checkpoint' e verifica, na memória, quais instruções chegaram com o 'comando commit' para aplica-los na área de dados do disco de dados.
-	- 
+	- A cada 1 minuto o SQL Server ativa o robô 'checkpoint' e verifica, na memória, quais instruções chegaram com o 'comando commit' para aplica-los na área de dados do disco de dados.
 
 */
 
@@ -24,13 +23,36 @@ create table cliente(
 go
 
 
+-- Inicia uma transação única no SQL Server
+begin transaction
+
 -- Insere dados na tabela:
 insert into cliente (nome) values ('Ana')
 insert into cliente (nome) values ('José')
 insert into cliente (nome) values ('Pedro')
+insert into cliente (nome) values ('Tereza')
+insert into cliente (nome) values ('Augusto')
+insert into cliente (nome) values ('João')
+go
+
+-- Finalisa a transação única no SQL Server
+commit transaction
+
+
+-- Desfazer a última execução:
+rollback transaction
 go
 
 
--- Exibe os dados da tabela:
-select nome 'Clientes' from cliente
+-- Exibe dados commitados na tabela:
+select nome 'CLIENTES' from cliente
+go
+
+-- Exibe dados não commitados na tabela:
+select * from cliente with (nolock) -- É arriscado, pois não garante que os dados serão commitados na tabela.
+go
+
+
+-- Deleta od dados na tabela:
+delete from cliente
 go
