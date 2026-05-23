@@ -11,15 +11,22 @@
 */
 
 
+-- Criar o filegroup: CLIENTES_IMPORTANTES
+
 -- Cria um banco de dados:
-create database BANCOX
+create database CLIENTES
 go
 
 
 -- Cria uma tabela:
-create table cliente(
+create table clientes(
 	nome nchar(10)
 )
+
+create table clientes_importantes (
+	nome nchar(10)
+)
+
 go
 
 
