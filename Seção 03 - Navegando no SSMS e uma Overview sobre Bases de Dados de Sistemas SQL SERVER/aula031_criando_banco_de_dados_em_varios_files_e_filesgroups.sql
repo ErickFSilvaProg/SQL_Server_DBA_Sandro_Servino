@@ -2,7 +2,7 @@
 
 
 -- Criar o banco de dados DE FORMA RESUMIDA:
-create database CLIENTES2
+create database CLIENTES
 go
 
 
@@ -26,6 +26,16 @@ GO
 
 /* ********************************************* */
 
--- Deletar uma base de dados
-DROP DATABASE CLIENTES
-GO
+-- Se houver conexões ativas com o banco de dados, é necessário forçar o encerramento delas primeiro.
+-- Força o banco a ficar em modo de usuário único e encerra conexões ativas
+ALTER DATABASE [NomeDoSeuBanco] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+
+
+-- Deleta o banco de dados
+DROP DATABASE [NomeDoSeuBanco];
+
+
+-- Reverter um banco de dados do modo de usuário único (Single User) para o modo de múltiplos usuários (Multi User) no SQL Server
+ALTER DATABASE [NomeDoSeuBanco] SET MULTI_USER;
+-- ou
+ALTER DATABASE [NomeDoSeuBanco] SET MULTI_USER WITH ROLLBACK IMMEDIATE;

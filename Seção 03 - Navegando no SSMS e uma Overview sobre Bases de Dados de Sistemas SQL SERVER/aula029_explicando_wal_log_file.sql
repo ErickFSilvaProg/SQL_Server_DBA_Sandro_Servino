@@ -14,7 +14,7 @@
 -- Criar o filegroup: CLIENTES_IMPORTANTES
 
 -- Cria um banco de dados:
-create database CLIENTES
+create database clientes
 go
 
 
@@ -52,14 +52,14 @@ go
 
 
 -- Exibe dados commitados na tabela:
-select nome 'CLIENTES' from cliente
+select nome 'nome_clientes' from clientes
 go
 
 -- Exibe dados não commitados na tabela:
-select * from cliente with (nolock) -- É arriscado, pois não garante que os dados serão commitados na tabela.
+select * from clientes with (nolock) -- É arriscado, pois não garante que os dados serão commitados na tabela.
 go
 
 
--- Deleta od dados na tabela:
-delete from cliente
+-- Deleta os dados na tabela:
+delete from clientes
 go

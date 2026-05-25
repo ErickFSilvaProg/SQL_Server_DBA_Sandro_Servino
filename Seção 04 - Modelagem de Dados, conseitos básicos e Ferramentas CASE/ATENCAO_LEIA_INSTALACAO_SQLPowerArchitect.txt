@@ -1,0 +1,14 @@
+Ola Caro(a) Aluno(a),
+
+Se houver alguma dificuldade em achar o instalador do SQL Power Architect e mesmo do java runtime 8 que é exigido, 
+conforme site http://www.bestofbi.com/page/architect_download_os, ou mesmo se a empresa, mudar a pagina internet para baixar, 
+disponibilizei o instalador para windows do SQL Power Architect e do java runtime 8, como um recurso desta aula.
+
+Na pagina existe o instalador para linux e mac.
+
+Baixe e realize a instalacao, mas ATENCAO, antes de baixar os recursos da video aula, principalmente do java runtime, veja, 
+se no site da oracle (https://java.com/pt-BR/download/), não tem a versao mais nova,
+pois certamente deverá estar mais atualizada do que da video aula e então será mais seguro baixar o java runtime da propria oracle.
+
+Atenciosamente
+Sandro Servino
