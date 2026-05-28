@@ -11,45 +11,60 @@ go
 
 
 -- Criar banco de dados:
-create database [CLIENTES]
-	on primary 
-		(name = N'CLIENTESATUAIS', filename = N'M:\Data\CLIENTES.mdf', size = 65536KB, filegrowth = 65536KB)
-	log on 
-		(name = N'CLIENTES_log', filename = N'N:\Log\CLIENTES_log.ldf', size = 65536KB, filegrowth = 65536KB)
+create database CLIENTES
+	on primary (
+		name = 'CLIENTES', 
+		filename = 'M:\Data\CLIENTES.mdf', 
+		size = 64MB, 
+		maxsize = unlimited, 
+		filegrowth = 64MB)
+	log on (
+		name = 'CLIENTE_log', 
+		filename = 'N:\Log\CLIENTES_log.ldf', 
+		size = 64MB, 
+		maxsize = unlimited, 
+		filegrowth = 64MB)
+go
+
+
+-- Altera o proprietário (owner) do banco de dados: Sempre especificar o "sa".
+alter authorization
+	on database::CLIENTES
+	to sa
 go
 
 
 -- Criar filegroup:
 alter database CLIENTES
-add filegroup CLIENTESANTIGOS_FG
+add filegroup CLIENTES_ANTIGOS_FG
 go
 
 alter database CLIENTES
-add filegroup CLIENTESFUTUROS_FG
+add filegroup CLIENTES_FUTUROS_FG
 go
 
 
 -- Criar file:
 alter database CLIENTES
 add file (
-	name = CLIENTESANTIGOS,
-	filename = 'M:\Data\CLIENTESANTIGOS.ndf',
+	name = CLIENTES_ANTIGOS,
+	filename = 'M:\Data\CLIENTES_ANTIGOS.ndf',
 	size = 64MB,
-	maxsize = 128MB,
+	maxsize = unlimited,
 	filegrowth = 64MB
 )
-to filegroup CLIENTESANTIGOS_FG
+to filegroup CLIENTES_ANTIGOS_FG
 go
 
 alter database CLIENTES
 add file (
-	name = CLIENTESFUTUROS,
-	filename = 'M:\Data\CLIENTESFUTUROS.ndf',
+	name = CLIENTES_FUTUROS,
+	filename = 'M:\Data\CLIENTES_FUTUROS.ndf',
 	size = 64MB,
-	maxsize = 128MB,
+	maxsize = unlimited,
 	filegrowth = 64MB
 )
-to filegroup CLIENTESFUTUROS_FG
+to filegroup CLIENTES_FUTUROS_FG
 go
 
 
