@@ -1,10 +1,32 @@
-﻿/*
+/*
 	Selecionando o banco CLIENTES
 */
 use CLIENTES
 go
 
 
+/*
+	Verificando dados nas tabelas
+*/
+select * from dbo.customer -- cliente
+go
+
+select * from dbo."order" -- pedido
+go
+
+select * from dbo.orderItem -- itemPedido
+go
+
+select * from dbo.product -- produto
+go
+
+select * from dbo.supplier -- fornecedor
+go
+
+
+/*
+	Inserindo dados no banco CLIENTES
+*/
 SET IDENTITY_INSERT Customer ON -- Desliga a inserção automática do campo "id" da tabela.
 	INSERT INTO customer (id,firstName,lastName,city,country,phone)VALUES(1,'Maria','Anfefeefeders','Berlin','Germany','030-0074321')
 	INSERT INTO [Customer] ([Id],[FirstName],[LastName],[City],[Country],[Phone])VALUES(2,'Ana','Truefeejillo','México D.F.','Mexico','(56) 555-4729')

@@ -6,7 +6,7 @@ go
 
 
 /* 
-	Criar o banco de dados CLIENTES:
+	Criar o banco de dados CLIENTES: Especificando os files.
 */
 create database CLIENTES
 	on primary (
@@ -44,7 +44,7 @@ go
 	Criando a tabela customer: (cliente) 
 */
 create table customer (
-	id int identity,
+	id int identity(1,1), -- O SQL Server gererá automaticamente um número começando em 1 e acrescentará mais 1 a cada novo registro.
 	firstName nvarchar(40) not null, -- nome
 	lastName nvarchar(40) not null, -- sobrenome
 	city nvarchar(40), -- cidade
