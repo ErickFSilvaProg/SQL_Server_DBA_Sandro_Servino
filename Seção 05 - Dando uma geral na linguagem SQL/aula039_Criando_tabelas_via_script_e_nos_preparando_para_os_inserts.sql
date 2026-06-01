@@ -5,6 +5,13 @@ use master
 go
 
 
+/*
+	Apaga o banco de dados CLIENTES caso exista:
+*/
+drop database CLIENTES
+go
+
+
 /* 
 	Criar o banco de dados CLIENTES: Especificando os files.
 */
@@ -49,7 +56,7 @@ create table customer (
 	lastName nvarchar(40) not null, -- sobrenome
 	city nvarchar(40), -- cidade
 	country nvarchar(40), -- pais
-	phone nvarchar(20), -- telefone
+	phone nvarchar(20) -- telefone
 )
 go
 
@@ -138,8 +145,8 @@ create table orderItem (
 	id int identity,
 	unitPrice decimal(12,2) not null default 0, -- precoUnitario
 	quantity int not null default 1, -- quantidade
-	idOrder int not null, -- idPedido
-	idProduct int not null -- idProduto
+	orderId int not null, -- idPedido
+	productId int not null -- idProduto
 )
 go
 
@@ -151,10 +158,10 @@ go
 
 alter table orderItem
 	add constraint fk_orderItem_order
-		foreign key (idOrder) references "order" (id)
+		foreign key (orderId) references "order" (id)
 go
 
 alter table orderItem
 	add constraint fk_orderItem_product
-		foreign key (idProduct) references product (id)
+		foreign key (productId) references product (id)
 go

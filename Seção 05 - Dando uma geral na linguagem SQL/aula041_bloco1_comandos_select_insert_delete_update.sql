@@ -7,6 +7,14 @@ go
 
 
 /*
+	Lista as tabelas existentes no banco:
+*/
+
+select table_name as Tabela from information_schema.tables
+go
+
+
+/*
 	SELECTS na tabela customer
 */
 
@@ -22,20 +30,33 @@ select * from customer
 go
 
  -- Filtra por pais:
-select id, firstName, lastName, City, Country, Phone
+select id,
+	   firstName, 
+	   lastName, 
+	   City, 
+	   Country, 
+	   Phone
 from customer
-where country = 'Sweden'
+where country = 'Brazil' or country = 'Brasil'
 go
 
 -- Ordenação com mais de uma coluna em ordem ascendente:
-select firstName, lastName, city, country
+select firstName as NOME,
+	   lastName as SOBRENOME,
+	   country as PAÍS,
+	   city as CIDADE
 from customer
-order by country, city
+order by country asc, city asc
 go
 
 -- Conta a quantidade de registros em uma coluna:
 select count(id) as "QTD de registros"
 from customer
+go
+
+select count(id) as 'QTD de registros'
+from customer
+where country = 'Brasil' or country = 'Brazil'
 go
 
 
