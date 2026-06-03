@@ -19,9 +19,9 @@ go
 */
 
 -- Projeta os dados renomeando o cabeçalho das colunas:
-select firstName as "NAME",
-	   lastName as "LASTNAME",
-	   city as "CITY"
+select firstName as [NAME],
+	   lastName as [LASTNAME],
+	   city as [CITY]
 from customer
 go
 
@@ -41,20 +41,20 @@ where country = 'Brazil' or country = 'Brasil'
 go
 
 -- Ordenação com mais de uma coluna em ordem ascendente:
-select firstName as NOME,
-	   lastName as SOBRENOME,
-	   country as PAÍS,
-	   city as CIDADE
+select firstName as [NOME],
+	   lastName as [SOBRENOME],
+	   country as [PAÍS],
+	   city as [CIDADE]
 from customer
 order by country asc, city asc
 go
 
 -- Conta a quantidade de registros em uma coluna:
-select count(id) as "QTD de registros"
+select count(id) as [QTD de registros]
 from customer
 go
 
-select count(id) as 'QTD de registros'
+select count(id) as [QTD de registros]
 from customer
 where country = 'Brasil' or country = 'Brazil'
 go
@@ -65,30 +65,32 @@ go
 */
 
 -- Ordena pelo nome da empresa em ordem ascendente:
-select companyName, contactName, City, Country
+select companyName as [Empresa],
+	   contactName as [Contato],
+	   city as [Cidade],
+	   country as [País]
 from supplier
 order by companyName
 go
 
 -- Ordena pelo nome da empresa em ordem decrescente:
-select companyName, contactName, city, country
+select companyName as [Company],
+	   contactName as [Contact],
+	   city as [City],
+	   country as [Country]
 from supplier
-order by companyName desc
+order by Company desc
 go
 
 -- Projeta os registros filtrando por pais e removendo os campos repetidos:
-select distinct country
+select distinct country as [Country]
 from supplier
 order by country
 go
 
 -- Projeta os registros filtrando por pais sem remover os campos repetidos:
-select country
-from supplier
-order by country
-go
-
-select country, companyName, contactName, contactTitle, city, phone,fax
+select country as [COUNTRY],
+	   companyName as [COMPANY]
 from supplier
 order by country
 go
@@ -98,8 +100,11 @@ go
 	SELECTS na tabela product
 */
 
--- Projeta os 10 primeiros registros ordenando peço unitário em ordem decrescente:
-select top 10 id, productName, unitPrice, package
+-- Projeta os 10 primeiros produtos ordenando por preço unitário em ordem decrescente:
+select top 10 id, 
+			  productName, 
+			  unitPrice,
+			  package
 from product
 order by unitPrice desc
 go
@@ -110,7 +115,7 @@ from product
 go
 
 -- Projeta o menor preço da coluna unitPrice da tabela produto:
-select min(unitPrice) as "Menor valor"
+select min(unitPrice) as [Menor valor]
 from product
 go
 
@@ -120,22 +125,22 @@ go
 */
 
 -- Projeta os registros da tabela order:
-select * from "order"
+select * from [order]
 go
 
 -- Projeta o maior preço da coluna totalAmount da tabela order filtrando o ano:
-select max(totalAmount) as "Maior valor"
-from "order"
+select max(totalAmount) as [Maior valor]
+from [order]
 where year(orderDate) = 2014
 go
 
 -- Projeta a soma da coluna totalAmount da tabela order filtrando por ano:
-select sum(totalAmount) as "Valor total dos pedidos"
-from "order"
+select sum(totalAmount) as [Valor total dos pedidos]
+from [order]
 where year(orderDate) = 2013
 go
 
 -- Projeta o valor médio da coluna totalAmount da tabela order
-select avg(totalAmount) as "Valor médio dos pedidos"
-from "order"
+select avg(totalAmount) as [Valor médio dos pedidos]
+from [order]
 go

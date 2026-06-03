@@ -7,114 +7,139 @@ go
 
 
 /*
-	SELECTS na tabela customer
+	WHERE, AND, OR, NOT, IN, BETWEEN, LIKE, IS NULL, CLAUSE
 */
 
--- Projeta os dados renomeando o cabeçalho das colunas:
-select firstName as "NAME",
-	   lastName as "LASTNAME",
-	   city as "CITY"
+-- AND:
+select id as [Cód],
+	   firstName as [Nome],
+	   lastName as [Sobrenome],
+	   city as[Cidade],
+	   country as [País]
 from customer
+where firstName = 'Thomas' and lastName = 'Hardy'
 go
 
--- Essa maneira gera problemas de performance ao banco:
-select * from customer
+select id,
+	   orderDate,
+	   customerId,
+	   totalAmount
+from [order]
+where (totalAmount >= 500 and totalAmount <= 15000)
+order by totalAmount desc
 go
 
- -- Filtra por pais:
-select id, firstName, lastName, City, Country, Phone
+
+-- OR:
+select id,
+	   firstName,
+	   lastName,
+	   city,
+	   country
 from customer
-where country = 'Sweden'
+where country = 'Spain' or country = 'France'
 go
 
--- Ordenação com mais de uma coluna em ordem ascendente:
-select firstName, lastName, city, country
+
+-- NOT:
+select id,
+	   firstName,
+	   LastName,
+	   City,
+	   Country
 from customer
-order by country, city
+where not country = 'USA'
 go
 
--- Conta a quantidade de registros em uma coluna:
-select count(id) as "QTD de registros"
-from customer
+select id,
+	   orderDate,
+	   customerId,
+	   totalAmount
+from [order]
+where not (totalAmount >= 50 and totalAmount <= 15000)
+order by totalAmount asc
 go
 
 
-/*
-	SELECTS na tabela supplier
-*/
-
--- Ordena pelo nome da empresa em ordem ascendente:
-select companyName, contactName, City, Country
+-- IN:
+select id as [Cód],
+	   companyName as [Empresa],
+	   city as [Cidade],
+	   country as [País]
 from supplier
-order by companyName
-go
-
--- Ordena pelo nome da empresa em ordem decrescente:
-select companyName, contactName, city, country
-from supplier
-order by companyName desc
-go
-
--- Projeta os registros filtrando por pais e removendo os campos repetidos:
-select distinct country
-from supplier
-order by country
-go
-
--- Projeta os registros filtrando por pais sem remover os campos repetidos:
-select country
-from supplier
-order by country
-go
-
-select country, companyName, contactName, contactTitle, city, phone,fax
-from supplier
-order by country
+where country in ('USA','UK','Japan')
 go
 
 
-/*
-	SELECTS na tabela product
-*/
-
--- Projeta os 10 primeiros registros ordenando peço unitário em ordem decrescente:
-select top 10 id, productName, unitPrice, package
+-- NOT IN:
+select id as [Cód],
+	   ProductName as [Produto],
+	   unitPrice as [Preço]
 from product
-order by unitPrice desc
+where unitPrice not in (10,20,30,40,50)
 go
 
--- Projeta apenas os valores unitários da tabela produto:
-select unitPrice
+
+-- BETWEEN:
+select id,
+	   productName,
+	   unitPrice
 from product
+where unitPrice between 5 and 100
+order by unitPrice
 go
 
--- Projeta o menor preço da coluna unitPrice da tabela produto:
-select min(unitPrice) as "Menor valor"
+select count(id) as [Total de IDs],
+	   sum(totalAmount) as [Total de final]
+from [order]
+where orderDate between '1/1/2013' and '1/31/2013'
+go
+
+
+-- NOT BETWEEN:
+select id,
+	   productName,
+	   unitPrice
 from product
+where unitPrice not between 5 and 100
+order by unitPrice
 go
 
 
-/*
-	SELECTS na tabela order
-*/
-
--- Projeta os registros da tabela order:
-select * from "order"
+-- LIKE:
+select id,
+	   productName,
+	   unitPrice,
+	   package
+from product
+where productName like 'Ca%' -- Contenha um ou mais caracteres após o "Ca"
 go
 
--- Projeta o maior preço da coluna totalAmount da tabela order filtrando o ano:
-select max(totalAmount) as "Maior valor"
-from "order"
-where year(orderDate) = 2014
+select id,
+	   productName,
+	   unitPrice,
+	   package
+from product
+where productName like 'Cha_' or -- Contenha apenas um caracteres após o "Cha"
+	  productName like 'Chan_' -- Contenha apenas um caracteres após o "Chan"
 go
 
--- Projeta a soma da coluna totalAmount da tabela order filtrando por ano:
-select sum(totalAmount) as "Valor total dos pedidos"
-from "order"
-where year(orderDate) = 2013
+
+-- IS NULL:
+select id,
+	   companyName,
+	   phone,
+	   fax
+from supplier
+where fax is null
 go
 
--- Projeta o valor médio da coluna totalAmount da tabela order
-select avg(totalAmount) as "Valor médio dos pedidos"
-from "order"
+
+-- IS NOT NULL:
+select id,
+	   companyName,
+	   phone,
+	   fax
+from supplier
+where fax is not null
 go
