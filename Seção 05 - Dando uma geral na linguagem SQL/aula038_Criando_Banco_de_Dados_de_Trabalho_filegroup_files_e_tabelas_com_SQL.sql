@@ -11,17 +11,17 @@ use master;
 
 -- Criar banco de dados:
 create database CLIENTES
-on primary(
+on primary (
 	name = 'CLIENTES', 
 	filename = 'M:\Data\CLIENTES.mdf', 
-	size = 64MB, 
-	maxsize = unlimited, 
+	size = 32MB, 
+	maxsize = 2GB, 
 	filegrowth = 64MB
 )
-log on(
+log on (
 	name = 'CLIENTE_log', 
 	filename = 'N:\Log\CLIENTES_log.ldf', 
-	size = 64MB, 
+	size = 32MB, 
 	maxsize = unlimited, 
 	filegrowth = 64MB
 );
@@ -46,7 +46,7 @@ alter database CLIENTES
 add file(
 	name = CLIENTES_ANTIGOS,
 	filename = 'M:\Data\CLIENTES_ANTIGOS.ndf',
-	size = 64MB,
+	size = 32MB,
 	maxsize = unlimited,
 	filegrowth = 64MB
 )
@@ -56,7 +56,7 @@ alter database CLIENTES
 add file(
 	name = CLIENTES_FUTUROS,
 	filename = 'M:\Data\CLIENTES_FUTUROS.ndf',
-	size = 64MB,
+	size = 32MB,
 	maxsize = unlimited,
 	filegrowth = 64MB
 )
@@ -67,34 +67,48 @@ to filegroup CLIENTES_FUTUROS_FG;
 use CLIENTES;
 
 
--- Criar tabela: Não informando o filegroup.
+-- Criar a tabela clientes não informando o filegroup.
 create table clientes(
-	-- O "identity" faz o SQL Server gerar números sequenciais automaticamente para este campo.
-	idCliente int identity primary key,
-	nome varchar(50),
-	cidade varchar(15),
-	uf varchar(2)
+	id int identity,
+	nome varchar(50) not null,
+	cidade varchar(30) not null,
+	uf char(2) not null
 );
 
+alter table clientes
+add constraint pk_clientes
+primary key (id);
 
--- Criar tabela: Informando o filegroup.
+
+-- Criar a tabela clientesFuturos informando o filegroup.
 create table clientesFuturos(
 	-- O "identity" faz o SQL Server gerar números sequenciais automaticamente para este campo.
-	idCliente int identity primary key,
-	nome nvarchar(50),
-	cidade nvarchar(15),
-	uf varchar(2)
+	id int identity,
+	nome varchar(50) not null,
+	cidade varchar(30) not null,
+	uf char(2) not null
 )
 -- Expecificando o filegroup da tabela.
-on CLIENTESFUTUROS_FG;
+on CLIENTES_FUTUROS_FG;
 
+alter table clientesFuturos
+add constraint pk_clientesFuturos
+primary key (id);
+
+
+-- Criar a tabela clientesAntigos informando o filegroup.
 create table clientesAntigos(
-	idCliente int identity primary key,
-	nome nvarchar(50),
-	cidade nvarchar(15),
-	uf varchar(2)
+	id int identity,
+	nome varchar(50) not null,
+	cidade varchar(30) not null,
+	uf char(2) not null
 )
-on CLIENTESANTIGOS_FG;
+-- Expecificando o filegroup da tabela.
+on CLIENTES_ANTIGOS_FG;
+
+alter table clientesAntigos
+add constraint pk_clientesAntigos
+primary key (id);
 
 
 /* DELETAR OBJETOS */
