@@ -1,50 +1,47 @@
 /* 
 	Selecionar o banco master: Procedimento padrão para criar um novo banco de dados com seus files e filegroups no SQL Server.
 */
-use master
-go
+use master;
 
 
 /*
 	Apaga o banco de dados CLIENTES caso exista:
 */
-drop database CLIENTES
-go
+drop database CLIENTES;
 
 
 /* 
 	Criar o banco de dados CLIENTES: Especificando os files.
 */
 create database CLIENTES
-	on primary (
-		name = 'CLIENTES', 
-		filename = 'M:\Data\CLIENTES.mdf', 
-		size = 64MB, 
-		maxsize = unlimited, 
-		filegrowth = 64MB)
-	log on (
-		name = 'CLIENTE_log', 
-		filename = 'N:\Log\CLIENTES_log.ldf', 
-		size = 64MB, 
-		maxsize = unlimited, 
-		filegrowth = 64MB)
-go
+on primary (
+	name = 'CLIENTES', 
+	filename = 'M:\Data\CLIENTES.mdf', 
+	size = 32MB, 
+	maxsize = 2GB, 
+	filegrowth = 64MB
+)
+log on (
+	name = 'CLIENTE_log', 
+	filename = 'N:\Log\CLIENTES_log.ldf', 
+	size = 32MB, 
+	maxsize = unlimited, 
+	filegrowth = 64MB
+);
 
 
 /* 
 	Altera o proprietário (owner) do banco de dados: Sempre especificar o "sa".
 */
 alter authorization
-	on database::CLIENTES
-	to sa
-go
+on database::CLIENTES
+to sa;
 
 
 /* 
 	Selecionar o banco CLIENTES: Sair do banco master para criar os objetos no banco CLIENTES. 
 */
-use CLIENTES
-go
+use CLIENTES;
 
 
 /* 
