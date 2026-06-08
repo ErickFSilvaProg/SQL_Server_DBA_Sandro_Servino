@@ -1,17 +1,16 @@
 /*
-	Selecionando o banco CLIENTES
+	Seleciona o banco CLIENTES
 */
 
-use CLIENTES
-go
+use CLIENTES;
 
 
 /*
-	Lista as tabelas existentes no banco:
+	Listar as tabelas existentes no banco:
 */
 
-select table_name as Tabela from information_schema.tables
-go
+select table_name as [Tabela]
+from information_schema.tables;
 
 
 /*
@@ -22,42 +21,36 @@ go
 select firstName as [NAME],
 	   lastName as [LASTNAME],
 	   city as [CITY]
-from customer
-go
+from customer;
 
 -- Essa maneira gera problemas de performance ao banco:
-select * from customer
-go
+select * from customer;
 
- -- Filtra por pais:
-select id,
-	   firstName, 
-	   lastName, 
-	   City, 
-	   Country, 
-	   Phone
+ -- Filtrar por pais:
+select id as [ID],
+	   firstName as [NOME],
+	   lastName as [SOBRENOME],
+	   city as [CIDADE],
+	   country as [PAÍS],
+	   phone as [TELEFONE]
 from customer
-where country = 'Brazil' or country = 'Brasil'
-go
+where country = 'Brazil' or country = 'Brasil';
 
 -- Ordenação com mais de uma coluna em ordem ascendente:
 select firstName as [NOME],
 	   lastName as [SOBRENOME],
-	   country as [PAÍS],
+	   country as [PAIS],
 	   city as [CIDADE]
 from customer
-order by country asc, city asc
-go
+order by country asc, city asc;
 
 -- Conta a quantidade de registros em uma coluna:
-select count(id) as [QTD de registros]
-from customer
-go
+select count(id) as [REGISTROS]
+from customer;
 
-select count(id) as [QTD de registros]
+select count(id) as [REGISTROS]
 from customer
-where country = 'Brasil' or country = 'Brazil'
-go
+where country = 'Brasil' or country = 'Brazil';
 
 
 /*
@@ -70,54 +63,47 @@ select companyName as [Empresa],
 	   city as [Cidade],
 	   country as [País]
 from supplier
-order by companyName
-go
+order by companyName;
 
--- Ordena pelo nome da empresa em ordem decrescente:
+-- Ordena pelo nome do país e da cidade em ordem crescente:
 select companyName as [Company],
 	   contactName as [Contact],
 	   city as [City],
 	   country as [Country]
 from supplier
-order by Company desc
-go
+order by country asc;
 
 -- Projeta os registros filtrando por pais e removendo os campos repetidos:
 select distinct country as [Country]
 from supplier
-order by country
-go
+order by country;
 
 -- Projeta os registros filtrando por pais sem remover os campos repetidos:
 select country as [COUNTRY],
 	   companyName as [COMPANY]
 from supplier
-order by country
-go
+order by country;
 
 
 /*
 	SELECTS na tabela product
 */
 
--- Projeta os 10 primeiros produtos ordenando por preço unitário em ordem decrescente:
+-- Projeta os 10 primeiros produtos ordenando por preço unitário em ordem crescente:
 select top 10 id, 
 			  productName, 
 			  unitPrice,
 			  package
 from product
-order by unitPrice desc
-go
+order by unitPrice desc;
 
 -- Projeta apenas os valores unitários da tabela produto:
 select unitPrice
-from product
-go
+from product;
 
 -- Projeta o menor preço da coluna unitPrice da tabela produto:
 select min(unitPrice) as [Menor valor]
-from product
-go
+from product;
 
 
 /*
@@ -125,22 +111,18 @@ go
 */
 
 -- Projeta os registros da tabela order:
-select * from [order]
-go
+select * from [order];
 
 -- Projeta o maior preço da coluna totalAmount da tabela order filtrando o ano:
 select max(totalAmount) as [Maior valor]
 from [order]
-where year(orderDate) = 2014
-go
+where year(orderDate) = 2014;
 
 -- Projeta a soma da coluna totalAmount da tabela order filtrando por ano:
 select sum(totalAmount) as [Valor total dos pedidos]
 from [order]
-where year(orderDate) = 2013
-go
+where year(orderDate) = 2013;
 
 -- Projeta o valor médio da coluna totalAmount da tabela order
 select avg(totalAmount) as [Valor médio dos pedidos]
-from [order]
-go
+from [order];
