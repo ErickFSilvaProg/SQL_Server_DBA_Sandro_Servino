@@ -2,8 +2,7 @@
 	Selecionando o banco CLIENTES
 */
 
-use CLIENTES
-go
+use CLIENTES;
 
 
 /*
@@ -17,17 +16,16 @@ select id as [Cód],
 	   city as[Cidade],
 	   country as [País]
 from customer
-where firstName = 'Thomas' and lastName = 'Hardy'
-go
+where firstName = 'Thomas' and lastName = 'Hardy';
+
 
 select id,
 	   orderDate,
-	   customerId,
+	   id_customer,
 	   totalAmount
 from [order]
 where (totalAmount >= 500 and totalAmount <= 15000)
-order by totalAmount desc
-go
+order by totalAmount desc;
 
 
 -- OR:
@@ -37,8 +35,7 @@ select id,
 	   city,
 	   country
 from customer
-where country = 'Spain' or country = 'France'
-go
+where country = 'Spain' or country = 'France';
 
 
 -- NOT:
@@ -49,16 +46,16 @@ select id,
 	   Country
 from customer
 where not country = 'USA'
-go
+order by country asc;
+
 
 select id,
 	   orderDate,
-	   customerId,
+	   id_customer,
 	   totalAmount
 from [order]
 where not (totalAmount >= 50 and totalAmount <= 15000)
-order by totalAmount asc
-go
+order by totalAmount asc;
 
 
 -- IN:
@@ -67,8 +64,7 @@ select id as [Cód],
 	   city as [Cidade],
 	   country as [País]
 from supplier
-where country in ('USA','UK','Japan')
-go
+where country in ('USA','UK','Japan');
 
 
 -- NOT IN:
@@ -76,8 +72,7 @@ select id as [Cód],
 	   ProductName as [Produto],
 	   unitPrice as [Preço]
 from product
-where unitPrice not in (10,20,30,40,50)
-go
+where unitPrice not in (10,20,30,40,50);
 
 
 -- BETWEEN:
@@ -86,14 +81,13 @@ select id,
 	   unitPrice
 from product
 where unitPrice between 5 and 100
-order by unitPrice
-go
+order by unitPrice;
+
 
 select count(id) as [Total de IDs],
-	   sum(totalAmount) as [Total de final]
+	   sum(totalAmount) as [Total Geral]
 from [order]
-where orderDate between '1/1/2013' and '1/31/2013'
-go
+where orderDate between '1/1/2013' and '1/31/2013';
 
 
 -- NOT BETWEEN:
@@ -102,8 +96,7 @@ select id,
 	   unitPrice
 from product
 where unitPrice not between 5 and 100
-order by unitPrice
-go
+order by unitPrice;
 
 
 -- LIKE:
@@ -112,8 +105,8 @@ select id,
 	   unitPrice,
 	   package
 from product
-where productName like 'Ca%' -- Contenha um ou mais caracteres após o "Ca"
-go
+where productName like 'Ca%'; -- Contenha um ou mais caracteres após o "Ca"
+
 
 select id,
 	   productName,
@@ -121,8 +114,7 @@ select id,
 	   package
 from product
 where productName like 'Cha_' or -- Contenha apenas um caracteres após o "Cha"
-	  productName like 'Chan_' -- Contenha apenas um caracteres após o "Chan"
-go
+	  productName like 'Chan_'; -- Contenha apenas um caracteres após o "Chan"
 
 
 -- IS NULL:
@@ -131,8 +123,7 @@ select id,
 	   phone,
 	   fax
 from supplier
-where fax is null
-go
+where fax is null;
 
 
 -- IS NOT NULL:
@@ -141,5 +132,4 @@ select id,
 	   phone,
 	   fax
 from supplier
-where fax is not null
-go
+where fax is not null;

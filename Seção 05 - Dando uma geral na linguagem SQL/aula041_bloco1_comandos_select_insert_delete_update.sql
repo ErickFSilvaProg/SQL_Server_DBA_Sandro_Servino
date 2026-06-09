@@ -89,7 +89,7 @@ order by country;
 	SELECTS na tabela product
 */
 
--- Projeta os 10 primeiros produtos ordenando por preço unitário em ordem crescente:
+-- Projeta os 10 primeiros produtos ordenando por preço unitário em ordem decrescente:
 select top 10 id, 
 			  productName, 
 			  unitPrice,
@@ -113,12 +113,12 @@ from product;
 -- Projeta os registros da tabela order:
 select * from [order];
 
--- Projeta o maior preço da coluna totalAmount da tabela order filtrando o ano:
+-- Projeta o maior preço da coluna totalAmount da tabela order filtrando o ano de 2014:
 select max(totalAmount) as [Maior valor]
 from [order]
 where year(orderDate) = 2014;
 
--- Projeta a soma da coluna totalAmount da tabela order filtrando por ano:
+-- Projeta a soma da coluna totalAmount da tabela order filtrando pelo ano de 2013:
 select sum(totalAmount) as [Valor total dos pedidos]
 from [order]
 where year(orderDate) = 2013;
