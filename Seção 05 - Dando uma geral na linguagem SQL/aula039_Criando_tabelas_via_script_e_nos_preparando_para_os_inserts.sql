@@ -13,14 +13,14 @@ on primary (
 	filename = 'M:\Data\CLIENTES.mdf', 
 	size = 32MB, 
 	maxsize = 2GB, 
-	filegrowth = 64MB
+	filegrowth = 32MB
 )
 log on (
 	name = 'CLIENTE_log', 
 	filename = 'N:\Log\CLIENTES_log.ldf', 
 	size = 32MB, 
 	maxsize = unlimited, 
-	filegrowth = 64MB
+	filegrowth = 32MB
 );
 
 
