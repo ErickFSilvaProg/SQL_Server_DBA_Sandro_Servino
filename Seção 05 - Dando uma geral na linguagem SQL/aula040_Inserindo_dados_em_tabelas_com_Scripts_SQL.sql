@@ -5,20 +5,6 @@ use CLIENTES;
 
 
 /*
-	Verificando dados nas tabelas
-*/
-select * from dbo.customer; -- cliente
-
-select * from dbo.[order]; -- pedido
-
-select * from dbo.orderItem; -- itemPedido
-
-select * from dbo.product; -- produto
-
-select * from dbo.supplier; -- fornecedor
-
-
-/*
 	Inserindo dados no banco CLIENTES
 */
 SET IDENTITY_INSERT Customer ON; -- Desliga a inserção automática do campo "id" da tabela.

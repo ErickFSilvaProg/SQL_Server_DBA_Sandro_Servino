@@ -4,6 +4,12 @@
 use master;
 
 
+/*
+	Excluir o banco de dados CLIENTES.
+*/
+drop database if exists CLIENTES;
+
+
 /* 
 	Criar o banco de dados CLIENTES: Especificando os files.
 */
@@ -12,7 +18,7 @@ on primary (
 	name = 'CLIENTES', 
 	filename = 'M:\Data\CLIENTES.mdf', 
 	size = 32MB, 
-	maxsize = 2GB, 
+	maxsize = unlimited, 
 	filegrowth = 32MB
 )
 log on (
@@ -141,4 +147,4 @@ foreign key (id_order) references [order] (id);
 
 alter table orderItem
 add constraint fk_orderItem_product
-foreign key (id_product) references product (id);
+foreign key (id_product) references [product] (id);
